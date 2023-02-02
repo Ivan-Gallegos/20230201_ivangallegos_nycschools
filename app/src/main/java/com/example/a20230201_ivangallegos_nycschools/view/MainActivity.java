@@ -25,9 +25,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        new Thread(
-                () -> Repo.INSTANCE.getSchools().enqueue(schoolsCallback())
-        ).start();
+//        new Thread(
+//                () -> Repo.INSTANCE.getSchools().enqueue(schoolsCallback())
+//        ).start();
     }
 
     @NonNull
