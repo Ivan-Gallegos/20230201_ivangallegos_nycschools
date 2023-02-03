@@ -1,4 +1,4 @@
-package com.example.a20230201_ivangallegos_nycschools.view;
+package com.example.a20230201_ivangallegos_nycschools.view.schools;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -15,10 +15,15 @@ import java.util.List;
 public class SchoolsAdapter extends RecyclerView.Adapter<SchoolsAdapter.SchoolViewHolder> {
 
     private List<School> schools = new ArrayList<>();
+    private final OnItemClickListener onItemClickListener;
+
+    public SchoolsAdapter(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
 
     public void setSchools(List<School> schools) {
         this.schools = schools;
-        notifyItemRangeChanged(0,schools.size());
+        notifyItemRangeChanged(0, schools.size());
     }
 
     public static class SchoolViewHolder extends RecyclerView.ViewHolder {
@@ -30,10 +35,11 @@ public class SchoolsAdapter extends RecyclerView.Adapter<SchoolsAdapter.SchoolVi
             this.binding = binding;
         }
 
-        public void bindViewHolder(School school){
+        public void bindViewHolder(School school, OnItemClickListener onItemClickListener) {
             int position = this.getAdapterPosition();
             String s = String.format("%s. %s", position, school.getSchoolName());
             binding.tvSchool.setText(s);
+            binding.getRoot().setOnClickListener(v -> onItemClickListener.onItemClick(school));
         }
     }
 
@@ -48,7 +54,7 @@ public class SchoolsAdapter extends RecyclerView.Adapter<SchoolsAdapter.SchoolVi
     @Override
     public void onBindViewHolder(@NonNull SchoolViewHolder viewHolder, final int position) {
         School school = schools.get(position);
-        viewHolder.bindViewHolder(school);
+        viewHolder.bindViewHolder(school, onItemClickListener);
     }
 
     @Override

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/schoolsFragment"
-        android:name="com.example.a20230201_ivangallegos_nycschools.view.SchoolsFragment"
+        android:name="com.example.a20230201_ivangallegos_nycschools.view.schools.SchoolsFragment"
         android:label="fragment_schools"
         tools:layout="@layout/fragment_schools">
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/scoresFragment"
-        android:name="com.example.a20230201_ivangallegos_nycschools.view.ScoresFragment"
+        android:name="com.example.a20230201_ivangallegos_nycschools.view.scores.ScoresFragment"
         android:label="fragment_scores"
         tools:layout="@layout/fragment_scores">
         <argument

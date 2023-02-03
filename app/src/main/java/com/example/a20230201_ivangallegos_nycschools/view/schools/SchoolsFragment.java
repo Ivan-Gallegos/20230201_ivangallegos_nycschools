@@ -1,4 +1,4 @@
-package com.example.a20230201_ivangallegos_nycschools.view;
+package com.example.a20230201_ivangallegos_nycschools.view.schools;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,6 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.a20230201_ivangallegos_nycschools.databinding.FragmentSchoolsBinding;
@@ -34,7 +36,10 @@ public class SchoolsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         binding.rvSchools.setLayoutManager(new LinearLayoutManager(getContext()));
-        SchoolsAdapter schoolsAdapter = new SchoolsAdapter();
+        SchoolsAdapter schoolsAdapter = new SchoolsAdapter(school -> {
+            NavDirections action = SchoolsFragmentDirections.actionSchoolsFragmentToScoresFragment(school.getDbn());
+            Navigation.findNavController(view).navigate(action);
+        });
         binding.rvSchools.setAdapter(schoolsAdapter);
 
         SchoolsViewModel vm = new ViewModelProvider(this).get(SchoolsViewModel.class);

@@ -29,5 +29,16 @@ object Repo {
         })
     }
 
-    fun getScores(dbn: String): Call<List<Score>> = schoolsService.getScores(dbn)
+    fun getScores(dbn: String): LiveData<List<Score>> = MutableLiveData<List<Score>>().apply {
+        schoolsService.getScores(dbn).enqueue(object : Callback<List<Score>?> {
+            override fun onResponse(call: Call<List<Score>?>, response: Response<List<Score>?>) {
+                val scores = response.body()
+                postValue(scores)
+            }
+
+            override fun onFailure(call: Call<List<Score>?>, t: Throwable) {
+                Log.e(TAG, t.message, t)
+            }
+        })
+    }
 }

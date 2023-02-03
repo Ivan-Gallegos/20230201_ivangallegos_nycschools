@@ -10,7 +10,7 @@ import java.util.List;
 
 public class SchoolsViewModel extends ViewModel {
 
-    private LiveData<List<School>> schools = Repo.INSTANCE.getSchools();
+    private final LiveData<List<School>> schools = Repo.INSTANCE.getSchools();
 
     public LiveData<List<School>> getSchools() {
         return schools;
