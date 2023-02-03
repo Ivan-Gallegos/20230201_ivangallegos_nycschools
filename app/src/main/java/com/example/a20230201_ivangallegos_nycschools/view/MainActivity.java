@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.a20230201_ivangallegos_nycschools.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
-    private static final String TAG = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
