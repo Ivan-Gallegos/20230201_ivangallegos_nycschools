@@ -3,6 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ScoresFragment"
+    tools:context=".view.ScoresFragment"
     android:background="@color/teal_200">
 </FrameLayout>

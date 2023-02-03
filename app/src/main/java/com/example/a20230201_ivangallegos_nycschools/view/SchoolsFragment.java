@@ -1,18 +1,18 @@
-package com.example.a20230201_ivangallegos_nycschools;
+package com.example.a20230201_ivangallegos_nycschools.view;
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.NavDirections;
-import androidx.navigation.Navigation;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
 import com.example.a20230201_ivangallegos_nycschools.databinding.FragmentSchoolsBinding;
+import com.example.a20230201_ivangallegos_nycschools.viewmodel.SchoolsViewModel;
 
 public class SchoolsFragment extends Fragment {
 
@@ -32,10 +32,13 @@ public class SchoolsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        binding.getRoot().setOnClickListener(v -> {
-            NavDirections action = SchoolsFragmentDirections.actionSchoolsFragmentToScoresFragment("dbn");
-            Navigation.findNavController(v).navigate(action);
-        });
+
+        binding.rvSchools.setLayoutManager(new LinearLayoutManager(getContext()));
+        SchoolsAdapter schoolsAdapter = new SchoolsAdapter();
+        binding.rvSchools.setAdapter(schoolsAdapter);
+
+        SchoolsViewModel vm = new ViewModelProvider(this).get(SchoolsViewModel.class);
+        vm.getSchools().observe(getViewLifecycleOwner(), schoolsAdapter::setSchools);
     }
 
     @Override

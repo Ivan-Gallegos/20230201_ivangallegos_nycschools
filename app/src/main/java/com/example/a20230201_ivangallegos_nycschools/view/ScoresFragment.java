@@ -1,4 +1,4 @@
-package com.example.a20230201_ivangallegos_nycschools;
+package com.example.a20230201_ivangallegos_nycschools.view;
 
 import android.os.Bundle;
 
